@@ -64,41 +64,27 @@
           </form>
         </div>
         <div layout="column" id="ra-list-div">
-          <div layout-gt-sm="row">
-            <md-list flex-gt-sm="33">
+          <div layout="row" layout-gt-sm="row">
+            <md-list layout="column" flex flex-gt-sm="33">
               <!--<md-subheader class="md-no-sticky">Random Thing Picker</md-subheader>-->
-              <md-list-item layout="row" ng-repeat="o in ctrl.options">
-                <div flex="90" layout-align="start">
-                  <h3> {{o.description}} </h3>
-                </div>
-                <div layout-align="end center">
-                  <md-button class="md-icon-button ra-list-icon-button" aria-label="Delete"
-                             ng-click="ctrl.delete(o.id)">
-                    <md-icon md-svg-icon="action:delete"></md-icon>
-                  </md-button>
-                </div>
-
+              <md-list-item layout="row" layout-align="start center" ng-repeat="o in ctrl.options">
+                <h3 flex="90"> {{o.description}} </h3>
+                <md-button flex="10" class="md-icon-button ra-list-icon-button" aria-label="Delete"
+                           ng-click="ctrl.delete(o.id)">
+                  <md-icon md-svg-icon="action:delete"></md-icon>
+                </md-button>
               </md-list-item>
-              <!--<md-list-item layout="row">-->
-              <!--<div flex="90" layout-align="start">-->
-              <!--<h3> Chada </h3>-->
-              <!--</div>-->
-              <!--<div layout-align="end center">-->
-              <!--<md-button class="md-icon-button ra-list-icon-button" aria-label="Delete">-->
-              <!--<md-icon md-svg-icon="action:delete"></md-icon>-->
-              <!--</md-button>-->
-              <!--</div>-->
-
-              <!--</md-list-item>-->
             </md-list>
           </div>
+        </div>
+        <div layout="column">
           <div ng-if="ctrl.pick" layout="row">
             <div flex-gt-sm="33" flex layout="column" layout-align="center center">
               <h1>{{ctrl.pick.description}}</h1>
             </div>
           </div>
-          <div layout-sm="column" layout-gt-sm="row">
-            <div flex-gt-sm="33" layout="column" layout-align="center">
+          <div layout-sm="row" layout-gt-sm="row">
+            <div flex flex-gt-sm="33" layout="column" layout-align="center">
               <md-button class="md-raised md-accent" ng-disabled="ctrl.options.length < 2 || ctrl.picking"
                          ng-click="ctrl.pickRandom()">
                 Pick
@@ -107,7 +93,7 @@
                          ng-click="ctrl.reset()" id="raResetButton">
                 Reset
               </md-button>
-              <!--<p id="raRunCounter" ng-hide="ctrl.hasNotPicked">Runs: {{ctrl.pickCount}}</p>-->
+              <p id="raRunCounter" ng-hide="ctrl.hasNotPicked">Runs: {{ctrl.pickCount}}</p>
             </div>
           </div>
         </div>
