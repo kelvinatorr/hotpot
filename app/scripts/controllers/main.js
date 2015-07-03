@@ -8,7 +8,7 @@
  * Controller of the almostApp
  */
 angular.module('hotpotApp')
-  .controller('MainCtrl',['$scope', '$firebaseAuth','$mdSidenav', '$mdBottomSheet', '$q','$timeout', function ($scope, $firebaseAuth, $mdSidenav, $mdBottomSheet, $q, $timeout) {
+  .controller('MainCtrl',['$scope', '$firebaseAuth','$mdSidenav', '$mdBottomSheet', '$q','$timeout','$mdMedia', function ($scope, $firebaseAuth, $mdSidenav, $mdBottomSheet, $q, $timeout, $mdMedia) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -75,7 +75,9 @@ angular.module('hotpotApp')
      *
      */
     self.add = function(){
-      if (self.newOption.description === '') return;
+      if (self.newOption.description === '') {
+        return;
+      }
       // Add to array.
       self.options.push(self.newOption);
       self.newOption = generateNewOption();
@@ -86,7 +88,7 @@ angular.module('hotpotApp')
      * @param id
      */
     self.delete = function(id) {
-      var idx = self.options.map(function(e){return e.id}).indexOf(id);
+      var idx = self.options.map(function(e){return e.id;}).indexOf(id);
       self.options.splice(idx,1);
     };
 
@@ -105,7 +107,7 @@ angular.module('hotpotApp')
     /**
      * The option that was randomly picked.
      */
-    self.pick;
+    self.pick = '';
 
     self.picking = false;
 
@@ -119,7 +121,9 @@ angular.module('hotpotApp')
       self.picking = true;
       $timeout(function(){
         self.pick = self.options[Math.floor(Math.random() * self.options.length)];
-        if(self.hasNotPicked) self.hasNotPicked = false;
+        if(self.hasNotPicked) {
+          self.hasNotPicked = false;
+        }
         self.pickCount += 1;
         self.picking = false;
       }, 500);
@@ -135,5 +139,11 @@ angular.module('hotpotApp')
       self.pick = undefined;
       self.hasNotPicked = true;
       self.pickCount = 0;
-    }
+    };
+
+    self.isNotPhoneScreen = false;
+    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(value) {
+      self.isNotPhoneScreen = value;
+    });
+
   }]);

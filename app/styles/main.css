@@ -46,9 +46,9 @@ md-toolbar h1 {
 }
 
 /*This centers the tool bar h1*/
-/*md-toolbar h1 {*/
-  /*margin: auto;*/
-/*}*/
+md-toolbar h1.app-header {
+  margin: auto;
+}
 
 /*This makes the content have padding*/
 #content  {
