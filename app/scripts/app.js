@@ -26,7 +26,7 @@
 
     $mdIconProvider
       .defaultIconSet('images/svg-sprite-maps.svg', 128)
-      .icon('menu', 'images/menu.svg', 24)
+      .icon('menu', 'images/material-icons/menu.svg', 24)
       //.iconSet("glyphicons", "fonts/glyphicons-halflings-regular.svg", 24);
       .icon('call', 'images/ic_call_24px.svg', 24)
       .iconSet('action', 'images/action-icons.svg', 24)
