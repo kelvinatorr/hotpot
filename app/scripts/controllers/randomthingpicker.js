@@ -62,6 +62,11 @@
       };
     };
 
+    self.isNotPhoneScreen = false;
+    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(value) {
+      self.isNotPhoneScreen = value;
+    });
+
     /**
      * Bound to the input box, represents new options for users to enter
      * @type {{id: number, description: string}}
@@ -72,23 +77,13 @@
      * Bound to the add button, adds the option that the user typed in to the array
      *
      */
-    self.add = function(){
-      if (self.newOption.description === '') {
-        return;
-      }
-      // Add to array.
-      self.options.push(self.newOption);
-      self.newOption = generateNewOption();
-    };
+    self.add = add;
 
     /**
      * Bound o the trash can icon, delete an option from the array.
      * @param id
      */
-    self.delete = function(id) {
-      var idx = self.options.map(function(e){return e.id;}).indexOf(id);
-      self.options.splice(idx,1);
-    };
+    self.delete = deleteOption;
 
     /**
      * True if the pick button has been pressed.
@@ -112,7 +107,15 @@
     /**
      * Bound to the pick button, selects an option from the options array randomly
      */
-    self.pickRandom = function() {
+    self.pickRandom = pickRandom;
+
+    /**
+     * Resets the app state to pristine, no options, no picks.
+     */
+    self.reset = reset;
+
+
+    function pickRandom() {
       // clear the pick.
       self.pick  = '';
       // disable the pick button
@@ -125,24 +128,30 @@
         self.pickCount += 1;
         self.picking = false;
       }, 500);
-    };
+    }
 
-    /**
-     * Resets the app state to pristine, no options, no picks.
-     */
-    self.reset = function() {
+    function add(){
+      if (self.newOption.description === '') {
+        return;
+      }
+      // Add to array.
+      self.options.push(self.newOption);
+      self.newOption = generateNewOption();
+    }
+
+    function reset() {
       self.options = [];
       optionCount = 0;
       self.newOption  = generateNewOption();
       self.pick = undefined;
       self.hasNotPicked = true;
       self.pickCount = 0;
-    };
+    }
 
-    self.isNotPhoneScreen = false;
-    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(value) {
-      self.isNotPhoneScreen = value;
-    });
+    function deleteOption(id) {
+      var idx = self.options.map(function(e){return e.id;}).indexOf(id);
+      self.options.splice(idx,1);
+    }
   }
 
 })();
