@@ -17,10 +17,10 @@
     .module('hotpotApp').config(['$mdThemingProvider', '$mdIconProvider', AppConfig
   ]);
 
-  angular
-    .module('hotpotApp').run(['$log',function($log){
-    $log.debug('starterApp + ngMaterial running kelvins...');
-  }]);
+  //angular
+  //  .module('hotpotApp').run(['$log',function($log){
+  //  $log.debug('starterApp + ngMaterial running kelvins...');
+  //}]);
 
   function AppConfig($mdThemingProvider, $mdIconProvider){
 
