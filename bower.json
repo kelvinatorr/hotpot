@@ -10,5 +10,5 @@
     "angular-ui-router": "~0.2.14"
   },
   "appPath": "app",
-  "moduleName": "almostApp"
+  "moduleName": "hotpotApp"
 }
