@@ -286,7 +286,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.svg',
+          src: ['{,*/}*.svg'],
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -344,7 +344,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'images/material-icons/{,*/}*.svg'
           ]
         }, {
           expand: true,
@@ -371,8 +372,8 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-        'imagemin',
-        'svgmin'
+        'imagemin'
+        //'svgmin'
       ]
     },
 
