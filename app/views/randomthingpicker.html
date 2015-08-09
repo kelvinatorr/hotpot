@@ -1,0 +1,46 @@
+<!--<h2 class="ra-section-label">Random Thing Picker</h2>-->
+<div layout="row">
+  <form flex-gt-sm="33" flex>
+    <div layout="column">
+      <md-input-container flex>
+        <label>Option</label>
+        <input ng-model="ctrl.newOption.description">
+      </md-input-container>
+      <md-button class="md-raised" ng-click="ctrl.add()">Add</md-button>
+    </div>
+  </form>
+</div>
+<div layout="column" id="ra-list-div">
+  <div layout="row" layout-gt-sm="row">
+    <md-list layout="column" flex flex-gt-sm="33">
+      <!--<md-subheader class="md-no-sticky">Random Thing Picker</md-subheader>-->
+      <md-list-item layout="row" layout-align="start center" ng-repeat="o in ctrl.options">
+        <h3 flex="90"> {{o.description}} </h3>
+        <md-button flex="10" class="md-icon-button ra-list-icon-button" aria-label="Delete"
+                   ng-click="ctrl.delete(o.id)">
+          <md-icon md-svg-icon="action:delete"></md-icon>
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>
+<div layout="column">
+  <div class="ng-cloak" ng-if="ctrl.pick" layout="row">
+    <div flex-gt-sm="33" flex layout="column" layout-align="center center">
+      <h1>{{ctrl.pick.description}}</h1>
+    </div>
+  </div>
+  <div layout-sm="row" layout-gt-sm="row">
+    <div flex flex-gt-sm="33" layout="column" layout-align="center">
+      <md-button class="md-raised md-accent" ng-disabled="ctrl.options.length < 2 || ctrl.picking"
+                 ng-click="ctrl.pickRandom()">
+        Pick
+      </md-button>
+      <md-button flex-gt-sm="33" class="md-raised" ng-hide="ctrl.hasNotPicked"
+                 ng-click="ctrl.reset()" id="raResetButton">
+        Reset
+      </md-button>
+      <p id="raRunCounter" ng-hide="ctrl.hasNotPicked">Runs: {{ctrl.pickCount}}</p>
+    </div>
+  </div>
+</div>

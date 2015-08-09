@@ -11,10 +11,10 @@
    * Main module of the application.
    */
   angular
-    .module('hotpotApp', ['firebase', 'ngMaterial']);
+    .module('hotpotApp', ['firebase', 'ngMaterial', 'ui.router']);
 
   angular
-    .module('hotpotApp').config(['$mdThemingProvider', '$mdIconProvider', AppConfig
+    .module('hotpotApp').config(['$mdThemingProvider', '$mdIconProvider','$stateProvider','$urlRouterProvider','$urlMatcherFactoryProvider', AppConfig
   ]);
 
   //angular
@@ -22,7 +22,7 @@
   //  $log.debug('starterApp + ngMaterial running kelvins...');
   //}]);
 
-  function AppConfig($mdThemingProvider, $mdIconProvider){
+  function AppConfig($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider){
 
     $mdIconProvider
       .defaultIconSet('images/material-icons/svg-sprite-maps.svg', 128)
@@ -49,6 +49,26 @@
     $mdThemingProvider.theme('default')
       .primaryPalette('light-blue')
       .accentPalette('pink');
+
+    $stateProvider
+      .state('app', {
+        url: '/app',
+        templateUrl: 'views/main.html'
+        //controller: 'LoginCtrl'
+        //controllerAs: 'ctrl'
+      });
+      //.state('randomThingPicker', {
+      //  parent: 'app',
+      //  url: '/randomThingPicker',
+      //  templateUrl: 'views/randomthingpicker.html'
+      //  //controller: 'LoginCtrl'
+      //  //controllerAs: 'ctrl'
+      //});
+
+    $urlRouterProvider.otherwise('/app');
+    $urlMatcherFactoryProvider.caseInsensitive(true);
+    // ignore trailing slashes.
+    $urlMatcherFactoryProvider.strictMode(false);
 
   }
 
