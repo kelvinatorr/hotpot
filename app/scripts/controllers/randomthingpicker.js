@@ -10,9 +10,9 @@
    * Controller of the hotpotApp
    */
   angular.module('hotpotApp')
-    .controller('RandomThingPickerCtrl', ['$scope', '$firebaseAuth','$mdSidenav', '$mdBottomSheet', '$q','$timeout','$mdMedia', RandomThingPickerCtrl]);
+    .controller('RandomThingPickerCtrl', ['$scope', '$firebaseAuth','$timeout', RandomThingPickerCtrl]);
 
-  function RandomThingPickerCtrl($scope, $firebaseAuth, $mdSidenav, $mdBottomSheet, $q, $timeout, $mdMedia) {
+  function RandomThingPickerCtrl($scope, $firebaseAuth, $timeout) {
     var ref = new Firebase('https://hotpot.firebaseio.com');
     var auth = $firebaseAuth(ref);
 
@@ -34,18 +34,6 @@
     //$scope.login();
     var self = this;
 
-    /**
-     * First hide the bottomsheet IF visible, then
-     * hide or Show the 'left' sideNav area
-     */
-    self.toggleSideMenu = function() {
-      var pending = $mdBottomSheet.hide() || $q.when(true);
-
-      pending.then(function(){
-        $mdSidenav('leftSideNav').toggle();
-      });
-    };
-
     self.options = [];
 
     var optionCount = 0;
@@ -61,11 +49,6 @@
         description: ''
       };
     };
-
-    self.isNotPhoneScreen = false;
-    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(value) {
-      self.isNotPhoneScreen = value;
-    });
 
     /**
      * Bound to the input box, represents new options for users to enter

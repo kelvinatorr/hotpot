@@ -87,3 +87,7 @@ h2.ra-section-label {
 .md-button {
   min-height: 2.25rem;
 }
+
+#bodyDiv {
+  height: 100%;
+}
