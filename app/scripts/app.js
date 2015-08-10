@@ -54,9 +54,9 @@
       .state('app', {
         url: '/app',
         templateUrl: 'views/main.html',
-        abstract: true
-        //controller: 'LoginCtrl'
-        //controllerAs: 'ctrl'
+        abstract: true,
+        controller: 'MainCtrl',
+        controllerAs: 'ctrl'
       })
       .state('randomThingPicker', {
         parent: 'app',
