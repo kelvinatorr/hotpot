@@ -53,19 +53,20 @@
     $stateProvider
       .state('app', {
         url: '/app',
-        templateUrl: 'views/main.html'
+        templateUrl: 'views/main.html',
+        abstract: true
         //controller: 'LoginCtrl'
         //controllerAs: 'ctrl'
+      })
+      .state('randomThingPicker', {
+        parent: 'app',
+        url: '/randomThingPicker',
+        templateUrl: 'views/randomthingpicker.html',
+        controller: 'RandomThingPickerCtrl',
+        controllerAs: 'ctrl'
       });
-      //.state('randomThingPicker', {
-      //  parent: 'app',
-      //  url: '/randomThingPicker',
-      //  templateUrl: 'views/randomthingpicker.html'
-      //  //controller: 'LoginCtrl'
-      //  //controllerAs: 'ctrl'
-      //});
 
-    $urlRouterProvider.otherwise('/app');
+    $urlRouterProvider.otherwise('/randomThingPicker');
     $urlMatcherFactoryProvider.caseInsensitive(true);
     // ignore trailing slashes.
     $urlMatcherFactoryProvider.strictMode(false);
